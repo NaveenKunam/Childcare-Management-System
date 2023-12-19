@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='page_style.css') }}">
+    <style>
+   body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif; /* Change font family */
+    display: flex;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #333;
+    padding-top: 20px;
+    height: 100vh;
+    color: white;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+/* Style for the links */
+.sidebar a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 10px;
+    border-radius: 8px; /* Rounded corners for links */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for background color and text color */
+}
+
+/* Hover effect for the links */
+.sidebar a:hover {
+    background-color: #555;
+    color: #ffcc00; /* Change text color on hover */
+}
+
+/* Active link style */
+.sidebar a.active {
+    background-color: #555;
+    color: #ffcc00;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Left Side Navigation Bar -->
+    <div class="sidebar">
+        <ul>
+            {% if user_role == 'Admin' %}
+            <li><a href="{{ url_for('page', page_name='view_facilities') }}">Facilities Enrollment</a></li>
+            <li><a href="{{ url_for('page', page_name='add_child') }}">Front Office(Parent/Teacher/Child Enrollment)</a></li>
+            <li><a href="{{ url_for('class_reg') }}">Classroom Allotment</a></li>
+            <li><a href="{{ url_for('view_teacher_attendance') }}">Attendance Summary-Teacher</a></li>
+            <li><a href="{{ url_for('view_attendance') }}">Attendance Summary-Children</a></li>
+            <li><a href="{{ url_for('page', page_name='page1') }}">Payment Details of Teacher</a></li>
+            <li><a href="{{ url_for('page', page_name='page1') }}">Payment Details of Children</a></li>
+            <li><a href="{{ url_for('page', page_name='report_student_attendance') }}">Report</a></li>
+            {% endif %}
+
+            {% if user_role == 'Parent' %}
+            <li><a href="{{ url_for('page', page_name='add_child') }}">Child Enrollment</a></li>
+            <li><a href="{{ url_for('page', page_name='attendance') }}">Child Attendance Entry</a></li>
+            <li><a href="{{ url_for('view_attendance') }}">Child Attendance Summary</a></li>
+            <li><a href="{{ url_for('page', page_name='view_child_form') }}">Payment Info</a></li>
+            {% endif %}
+
+            {% if user_role == 'Teacher' %}
+            <li><a href="{{ url_for('page', page_name='facilities_usage') }}">Facilities Usage</a></li>
+            <li><a href="{{ url_for('page', page_name='teacher_attendance') }}">Attendance Entry</a></li>
+            <li><a href="{{ url_for('view_teacher_attendance') }}">Attendance Summary</a></li>
+            <li><a href="{{ url_for('page', page_name='view_attendance') }}">Child Attendance Summary</a></li>
+            {% endif %}
+            <!-- Add more items as needed -->
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+
+        </ul>
+    </div>
+
+    <!-- Right Side Display Area -->
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>

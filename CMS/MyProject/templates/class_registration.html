@@ -1,0 +1,39 @@
+{% extends "dashboard.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Assigning</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Class Registration Details</h1>
+
+    <h2>Teachers Information:</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Classroom</th>
+            <th>Assigned Children</th>
+        </tr>
+        {% for teacher in teachers_data %}
+            <tr>
+                <td>{{ teacher.first_name }}</td>
+                <td>{{ teacher.classroom }}</td>
+                <td>{{ teacher.assigned_children}}</td>
+                <td>
+                    {% for child in assigned_children[teacher[0]] %}
+                        {{ child[1] }} {{ child[2] }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+
+{% endblock %}

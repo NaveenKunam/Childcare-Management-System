@@ -1,0 +1,34 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Details</title>
+</head>
+<body>
+    <h1>Teacher Details</h1>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Salary per Week</th>
+        </tr>
+        {% for teacher in teacher1_data %}
+            <tr>
+                <td>{{ teacher.ID }}</td>
+                <td>{{ teacher.first_name }}</td>
+                <td>${{ teacher.salary_per_week }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+
+
+
+{% endblock %}

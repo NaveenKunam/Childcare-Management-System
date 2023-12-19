@@ -1,0 +1,73 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facilities</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='page_style.css') }}">
+</head>
+<body>
+<div id="section1">
+    <h2>Facilities Enrollment</h2>
+    <form action="/submit_enrollment" method="post">
+<p>
+<label for="facilityname">Name of the facility</label>
+<input type="text" id="facilityname" name="facilityname" required>
+</p>
+
+<p>
+<label for="address">Address</label>
+<input type="text" id="address" name="address" required>
+</p>
+
+<p>
+<label for="phno">Phone Number</label>
+<input type="tel" id="phno" name="phno" required>
+</p>
+
+<p>
+<label for="licenseno">License Number</label>
+<input type="tel" id="licenseno" name="licenseno" required>
+</p>
+
+
+<h3>Admin Information</h3>
+<p>
+<label for="adminname">Admin Name</label>
+<input type="text" id="adminname" name="adminname" required>
+</p>
+
+<p>
+<label for="adminemailid">Admin Email ID</label>
+<input type="text" id="adminemailid" name="adminemailid" required>
+</p>
+
+<p>
+<label for="adminphno">Admin Phone Number</label>
+<input type="tel" id="adminphno" name="adminphno" required>
+</p>
+
+
+<label for="area">Area</label>
+<select id="area" name="area">
+<option value="playarea">Play Area</option>
+<option value="animationroom">Animation Room</option>
+<option value="coloringarea">Coloring Area</option>
+<option value="lawnactivityzone">Lawn Activity Zone</option>
+<option value="culturalactivityroom">Cultural Activity Room</option>
+</select>
+
+<p class="button-group"></p>
+<input type="submit" value="Enroll">
+<input type="reset" value="Reset">
+</p>
+</form>
+</div>
+</body>
+</html>
+
+{% endblock %}

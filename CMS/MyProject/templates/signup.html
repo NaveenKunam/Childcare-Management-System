@@ -1,0 +1,184 @@
+<!-- signup.html -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SignUp</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: 'Arial', sans-serif;
+                background: url('/static/IMAGE.jpg') center center fixed;
+                background-size: cover;
+            }
+
+            header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1000;
+                background-color: rgba(255, 255, 255, 0.8);
+                border-bottom: 1px solid #ddd;
+                padding: 10px;
+            }
+
+            header a {
+                color: #333;
+                margin-left: 20px;
+                text-decoration: none;
+            }
+
+            #display-area {
+                padding: 20px;
+                margin-top: 80px; /* Adjusted margin to give space below header */
+                color: #333;
+            }
+
+            .signup-form {
+                position: fixed;
+                top: 15%;
+                left: 1%;
+                background-color: #fff;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+                margin-left: 18%; /* Aligned signup container to the left */
+            }
+
+            h2 {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+            .container {
+                margin-top: 20px;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            input {
+                padding: 12px;
+                margin-bottom: 20px;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                width: 100%;
+            }
+
+            .btn-primary {
+                background-color: #3498db;
+                color: #fff;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                width: auto; /* Adjusted width for the role buttons */
+            }
+
+            .btn-primary:hover {
+                background-color: #2980b9;
+            }
+
+            p.bottom {
+                text-align: center;
+                margin-top: 20px;
+                color: #555;
+            }
+
+            footer {
+                background-color: rgba(255, 255, 255, 0.8);
+                border-top: 1px solid #ddd;
+                padding: 10px;
+                text-align: center;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1000;
+            }
+
+            /* Adjusted styles for better alignment */
+            .signup-form label {
+                display: none; /* Hide labels */
+            }
+
+            .signup-form input[type="text"],
+            .signup-form input[type="password"] {
+                margin-bottom: 10px;
+            }
+
+            /* Updated styles for a more professional look in the roles section */
+            .roles-section {
+                margin-bottom: 20px;
+            }
+
+            .roles-section label {
+                margin-right: 10px;
+                font-weight: bold; /* Make the Roles label bold */
+            }
+
+            .roles-section select {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 10px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">Childcare Management System</a>
+                <div class="navbar-collapse justify-content-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    
+        <div id="display-area" class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="signup-form">
+                        <h2>SignUp</h2>
+                        <form action="/signup" method="post">
+                            <div class="msg">{{ msg }}</div>
+                            <input id="username" name="username" type="text" placeholder="Enter Your Username" class="textbox"/>
+                            <input id="password" name="password" type="password" placeholder="Enter Your Password" class="textbox"/>
+                            <input id="email" name="email" type="text" placeholder="Enter Your Email ID" class="textbox"/>
+                            
+                            <div class="roles-section">
+                                <label for="role">Select Role:</label>
+                                <select id="role" name="role" class="form-control">
+                                    <option value="" selected disabled>Select Role</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Parent">Parent</option>
+                                    <option value="Teacher">Teacher</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">SignUp</button>
+                        </form>
+                        <p class="bottom">Already have an account? <a class="bottom" href="{{ url_for('page', page_name='index') }}"> Sign In here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2023 CCMS</p>
+        </footer>
+    </body>
+</html>

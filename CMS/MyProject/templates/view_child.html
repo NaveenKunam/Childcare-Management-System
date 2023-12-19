@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Child</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='page_style.css') }}">
+</head>
+<body>
+    <h1>Child Details</h1>
+    <p><strong>ID:</strong> {{ child[0] }}</p>
+    <p><strong>First Name:</strong> {{ child[1] }}</p>
+    <p><strong>Last Name:</strong> {{ child[2] }}</p>
+    <p><strong>Parents Name:</strong> {{ child[3] }}</p>
+    <p><strong>Email:</strong> {{ child[4] }}</p>
+    <p><strong>Phone Number:</strong> {{ child[5] }}</p>
+    <p><strong>Classroom:</strong> {{ child[6] }}</p>
+    <p><strong>Fee:</strong> ${{ child[7] }}</p>
+
+    <form action="/pay_fee" method="POST">
+        <input type="hidden" name="child_id" value="{{ child[0] }}">
+        <input type="submit" value="Pay Fee">
+    </form>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance System - View Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='page_style.css') }}">
+</head>
+<body>
+    <h1>View Attendance</h1>
+    <table border="1">
+        <tr>
+            <th>Student Name</th>
+            <th>Status</th>
+            <th>Date</th>
+        </tr>
+        {% for record in attendance_data %}
+            <tr>
+                <td>{{ record.StudentName}}</td>
+                <td>{{ record.Status }}</td>
+                <td>{{ record.Date }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+{% endblock %}

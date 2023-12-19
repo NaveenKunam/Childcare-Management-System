@@ -1,0 +1,47 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Children Attendance</title>
+    </head>
+    <body>
+        <h1>Children Attendance</h1>
+        <form action="/studentattendance" method="post">
+            <label for="classroom">Classroom:</label>
+            <input type="text" id="classroom" name="classroom" value="{{ classroom }}" required><br><br>
+            <label for="date">Select Date:</label>
+            {% if selected_date %}
+                <input type="date" id="date" name="date" value="{{ selected_date.strftime('%Y-%m-%d') }}" required><br><br>
+            {% else %}
+                <input type="date" id="date" name="date" required><br><br>
+            {% endif %}
+            <input type="submit" value="View Attendance">
+        </form><br><br>
+
+        {% if no_records_found %}
+            <!-- Display "No records found" message only if the form is submitted and no records are found -->
+            <p>No records found for the selected date and classroom.</p>
+        {% elif request.method == 'POST' %}
+            <!-- Display the table only if the form is submitted and records are found -->
+            <table border="1">
+                <tr>
+                    <th>Student Name</th>
+                    <th>Attendance Status</th>
+                    <th>Date</th>
+                </tr>
+                {% for row in data %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                    </tr>
+                {% endfor %}
+            </table><br>
+        
+            <a href="/download_studentattendance?date={{ selected_date.strftime('%Y-%m-%d') }}&classroom={{ classroom }}" download="studentattendance.csv">Download Children Attendance</a>
+        {% endif %}
+    </body>
+</html>
+{% endblock %}

@@ -1,0 +1,31 @@
+/* CSS for layout */
+.dashboard-container {
+    display: flex;
+    align-items: stretch;
+    height: 100vh;
+}
+.menu {
+    flex: 0 0 20%; /* 20% width for menu */
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+.display-area {
+    flex: 1; /* Takes remaining space */
+    padding: 20px;
+}
+.menu ul {
+    list-style: none;
+    padding: 0;
+}
+.menu ul li {
+    margin-bottom: 10px;
+}
+.menu ul li a {
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+}
+.menu ul li a:hover {
+    color: #000080; /* Change color on hover if needed */
+}
+/* Add any additional styles */

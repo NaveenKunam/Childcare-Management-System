@@ -1,0 +1,87 @@
+/* Fresh Look for login page with background image */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: url('/static/IMAGE.jpg') center center fixed;
+    background-size: cover;
+    overflow: hidden; /* Prevent scroll bars */
+}
+
+#homepage {
+    text-align: left;
+    padding: 50px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 80px;
+    color: #333;
+    min-height: 100vh; /* Ensure the content does not exceed viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    text-align: left;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+label {
+    margin-bottom: 12px;
+    color: #555;
+}
+
+input {
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+input[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+p.bottom {
+    text-align: left;
+    margin-top: 20px;
+    color: #555;
+}
+
+/* Footer Styles */
+.footer {
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-top: 1px solid #ddd;
+}

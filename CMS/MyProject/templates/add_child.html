@@ -1,0 +1,196 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enrollment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='page_style.css') }}">
+    <style>
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        /* Styles for the overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        body{
+        font-family: Arial, sans-serif;
+        }
+
+        .popup-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .btn-agree,
+        .btn-disagree {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .btn-agree {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-disagree {
+            background-color: #f44336;
+            color: #fff;
+            border: none;
+        }
+        #consentCheckboxError {
+            color: red;
+            margin-top: 5px;
+        }
+        .consent-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Child Enrollment</h1>
+    <form method="POST" action="/add_child" onsubmit="return validateForm()">
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" required><br>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" required><br>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" name="dob" required><br>
+
+        <label for="allergies">Do the child have any allergies? Please mention here:</label>
+        <input type="text" name="allergies" required><br>
+
+        <label for="parents_name">Parents Name:</label>
+        <input type="text" name="parents_name" required><br>
+
+        <label for="address">Address:</label>
+        <input type="text" name="address" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" required><br>
+
+        <label for="phone_number">Phone Number:</label>
+        <input type="tel" name="phone_number" required><br>
+
+        <label for="classroom">Classroom:</label>
+        <select name="classroom" required>
+            <option value="Infant">Infant</option>
+            <option value="Toddler">Toddler</option>
+            <option value="Twadler">Twadler</option>
+            <option value="3 Years Old">3 Years Old</option>
+            <option value="4 Years Old">4 Years Old</option>
+        </select><br>
+
+        <label>
+            <input type="checkbox" name="consentCheckbox" id="consentCheckbox" value="agreed" required>
+                I agree to the terms and conditions.
+        </label>
+        <!-- <div class="popup-container" id="consentPopup">
+            <h2>Consent Agreement</h2>
+            <p>We use cookies to improve your experience on our website. By continuing to browse, you agree to our use of cookies.</p>
+            <button class="btn-agree" onclick="handleAgree()">Agree</button>
+            <button class="btn-disagree" onclick="handleDisagree()">Disagree</button>
+        </div> -->
+
+        <p class="button-group"></p>
+        <input type="submit" value="Enroll">
+        <input type="reset" value="Reset">
+        </p>
+
+        <p class="bottom">For Teacher Enrollment <a class="bottom" href="{{ url_for('page', page_name='add_teacher') }}"> Click here</a></p>
+    </form>
+    
+    <div id="success-popup" class="popup">
+        <p>{{ success_message }}</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <!-- Overlay for the popup -->
+    <div id="overlay" class="overlay"></div>
+
+    <script>
+        // Display the success popup when there is a success message
+        window.onload = function() {
+            var successMessage = "{{ success_message }}";
+            if (successMessage) {
+                showPopup();
+            }
+        };
+
+        function showPopup() {
+            // Show the success popup and overlay
+            var successPopup = document.getElementById('success-popup');
+            var overlay = document.getElementById('overlay');
+            successPopup.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+
+        function closePopup() {
+            // Hide the success popup and overlay
+            var successPopup = document.getElementById('success-popup');
+            var overlay = document.getElementById('overlay');
+            successPopup.style.display = 'none';
+            overlay.style.display = 'none';
+        }
+        
+        function handleAgree() {
+            // You can perform any actions or set cookies here for user agreement
+            document.getElementById("consentPopup").style.display = "none";
+        }
+
+        // Function to handle 'Disagree' button click
+        function handleDisagree() {
+            // You can redirect the user to another page or perform other actions for disagreement
+            alert("You have chosen not to agree. Redirect or perform other actions here.");
+            // For this example, we just hide the popup
+            document.getElementById("consentPopup").style.display = "none";
+        }
+
+        function validateForm() {
+            var checkbox = document.getElementById("consentCheckbox");
+
+            if (!checkbox.checked) {
+                document.getElementById("consentCheckboxError").innerText = "Consent is required.";
+                return false;
+            } else {
+                document.getElementById("consentCheckboxError").innerText = "";
+                return true;
+            }
+        }
+        
+    </script>
+</body>
+</html>
+
+{% endblock %}

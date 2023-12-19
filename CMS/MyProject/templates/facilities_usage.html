@@ -1,0 +1,41 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facilities Usage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='page_style.css') }}">
+</head>
+<body>
+    <h1>Facilities Usage</h1>
+
+    <form action="/facilities_usage" method="post">
+        <label for="facility_name">Select Facility:</label>
+        <select name="facility_name" id="facility_name">
+            <option value="Animation Room">Animation Room</option>
+            <option value="Coloring Area">Coloring Area</option>
+            <option value="Lawn Activity Zone">Lawn Activity Zone</option>
+            <option value="Cultural Activity Room">Cultural Activity Room</option>
+        </select>
+
+        <label for="action">Select Action:</label>
+        <select name="action" id="action">
+            <option value="Clock In">Clock In</option>
+            <option value="Clock Out">Clock Out</option>
+        </select>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+</body>
+</html>
+
+
+{% endblock %}

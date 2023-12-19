@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='page_style.css') }}">
+</head>
+<body>
+    <h1>Enter Attendance</h1>
+    <form action="/submit_teacher_attendance" method="post">
+        <label for="teacher_name">Teacher Name:</label>
+        <input type="text" name="teacher_name" required>
+        <br>
+        <label for="attendance_status">Attendance Status:</label>
+        <select name="attendance_status" required>
+            <option value="Present">Present</option>
+            <option value="Absent">Absent</option>
+        </select>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
